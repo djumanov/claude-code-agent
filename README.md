@@ -12,15 +12,35 @@ Siz ──> Claude Desktop / Claude Code ──(MCP)──> davinci_resolve_mcp 
 
 | Nima | Izoh |
 |---|---|
-| DaVinci Resolve 18 / 19 / 20 | Studio versiya tavsiya etiladi. Bepul versiyada tashqi skripting va AI funksiyalar (subtitr, sahna aniqlash) cheklangan bo'lishi mumkin. |
+| DaVinci Resolve 18 / 19 / 20 | Bepul versiya ham ishlaydi (ko'prik orqali). AI funksiyalar (subtitr, sahna aniqlash) faqat Studio da. |
 | Python 3.10 – 3.12, **64-bit** | [python.org](https://www.python.org/downloads/) dan. Windows da o'rnatishda **"Add Python to PATH"** belgisini qo'ying. |
 | Claude Desktop yoki Claude Code | [claude.ai/download](https://claude.ai/download) |
 
-## 2. DaVinci Resolve ni sozlash (bir marta)
+## 2. Ulanish usuli: bepul yoki Studio
 
-1. Resolve ni oching → **DaVinci Resolve → Preferences → System → General**
-2. **External scripting using** → **Local** ni tanlang
-3. Resolve ni qayta ishga tushiring.
+Avval versiyangizni bilib oling: **DaVinci Resolve → About DaVinci Resolve**.
+Oynada "Studio" so'zi bo'lsa, sizda Studio versiya bor.
+
+### Bepul versiya (ko'prik orqali)
+
+Bepul versiyada **"External scripting using" sozlamasi yo'q**, shuning uchun Resolve ichida kichik
+ko'prik skripti ishga tushiriladi. O'rnatuvchi (3-qadam) uni Resolve papkasiga o'zi nusxalaydi.
+Shundan keyin har safar ishlashdan oldin:
+
+1. Resolve ni oching va loyihani yuklang.
+2. Yuqori menyuda **Workspace → Scripts → DaVinci_MCP_Bridge** ni bosing.
+3. **Workspace → Console** da `[MCP Bridge] Ishga tushdi` yozuvi chiqadi. Endi Claude ga buyruq bering.
+
+Ko'prik Resolve yopilguncha ishlaydi. Menyuda `Scripts` bo'limi yoki skript ko'rinmasa,
+Python 3 (64-bit) o'rnatilganini tekshiring va Resolve ni qayta oching.
+
+### Studio versiya (to'g'ridan-to'g'ri)
+
+**Preferences → System** (yuqoridagi **System** yorlig'i, **User** emas) **→ General → External scripting using → Local**,
+keyin Resolve ni qayta oching. Ko'prikni ishga tushirish shart emas, lekin xohlasangiz u ham ishlaydi.
+
+Server avval ko'prikni, keyin to'g'ridan-to'g'ri ulanishni sinaydi. `resolve_status` javobidagi `connection`
+maydoni qaysi usul ishlatilganini ko'rsatadi (`bridge` yoki `native`).
 
 ## 3. O'rnatish
 
@@ -47,7 +67,8 @@ bash scripts/install_mac.sh
 ```
 
 Skript: `.venv` yaratadi → paketlarni o'rnatadi → Claude Desktop konfiguratsiyasiga
-`davinci-resolve` serverini qo'shadi (eski konfiguratsiya `.bak` faylga saqlanadi).
+`davinci-resolve` serverini qo'shadi (eski konfiguratsiya `.bak` faylga saqlanadi) →
+`DaVinci_MCP_Bridge.py` ni Resolve ning `Fusion/Scripts/Utility` papkasiga nusxalaydi.
 
 So'ng **Claude Desktop ni to'liq yopib qayta oching** (tray/menyu bardan Quit). Chat oynasida
 asboblar (🔨) belgisida `davinci-resolve` ko'rinishi kerak.
@@ -84,7 +105,7 @@ Resolve boshqa joyga o'rnatilgan bo'lsa, `env` qo'shing:
 
 ## 4. Tekshirish
 
-Resolve ochiq turganda Claude ga yozing:
+Resolve ochiq va ko'prik ishga tushgan holda Claude ga yozing:
 
 > DaVinci holatini ko'rsat
 
@@ -129,7 +150,10 @@ Indekslar 1 dan boshlanadi (V1 trek, 1-klip). Vaqtlar sekundlarda beriladi va ti
 | Xato | Yechim |
 |---|---|
 | `DaVinciResolveScript moduli topilmadi` | Resolve o'rnatilgan yo'lni `RESOLVE_SCRIPT_API`/`RESOLVE_SCRIPT_LIB` orqali ko'rsating. |
-| `DaVinci Resolve ga ulanib bo'lmadi` | Resolve ochiqmi? External scripting = **Local**mi? Python 64-bit va 3.10–3.12 mi? |
+| `DaVinci Resolve ga ulanib bo'lmadi` / `ko'prik javob bermadi` | Resolve ochiqmi? **Workspace → Scripts → DaVinci_MCP_Bridge** bosilganmi? (Studio da: External scripting = **Local**.) |
+| `External scripting using` sozlamasi yo'q | Sizda bepul versiya — ko'prikdan foydalaning (2-bo'lim). |
+| Ko'prik ishlaganda Resolve qotib qoladi | Menga xabar bering. Vaqtincha Resolve ni qayta oching. |
+| 8765-port band | Boshqa port uchun Resolve ishga tushishidan oldin `DAVINCI_BRIDGE_PORT` ni, Claude konfiguratsiyasida esa `DAVINCI_BRIDGE_URL` ni o'rnating. |
 | Claude da asbob ko'rinmayapti | Claude Desktop ni to'liq yopib oching; logni tekshiring: Windows `%APPDATA%\Claude\logs\mcp-server-davinci-resolve.log`, macOS `~/Library/Logs/Claude/`. |
 | Playhead / titr ishlamaydi | Resolve da **Edit** sahifasini oching. |
 | Subtitr / sahna aniqlash ishlamaydi | Bu funksiyalar Resolve **Studio** 18.5+ talab qiladi. |

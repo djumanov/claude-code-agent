@@ -20,7 +20,7 @@ from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
-from .connection import ResolveError, get_resolve
+from .connection import ResolveError, connection_mode, get_resolve
 
 logging.basicConfig(
     level=os.environ.get("DAVINCI_MCP_LOG", "INFO"),
@@ -223,6 +223,7 @@ def resolve_status() -> dict[str, Any]:
         "product": resolve.GetProductName(),
         "version": resolve.GetVersionString(),
         "page": resolve.GetCurrentPage(),
+        "connection": connection_mode(),
         "project": project.GetName() if project else None,
     }
     if project:

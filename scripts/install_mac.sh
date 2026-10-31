@@ -19,7 +19,8 @@ echo "3/3 Claude Desktop ga ulanmoqda..."
 cat <<MSG
 
 Tayyor! Endi:
- - DaVinci Resolve: Preferences > System > General > External scripting using = Local
+ - DaVinci Resolve ni qayta oching va Workspace > Scripts > DaVinci_MCP_Bridge ni bosing
+   (Studio da buning o'rniga: Preferences > System > General > External scripting using = Local)
  - Claude Desktop ni to'liq yopib (Cmd+Q) qayta oching
  - Claude Code uchun:  claude mcp add davinci-resolve -- "$VENV_PY" -m davinci_resolve_mcp
 MSG

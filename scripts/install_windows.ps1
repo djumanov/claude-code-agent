@@ -19,6 +19,7 @@ Write-Host "3/3 Claude Desktop ga ulanmoqda..."
 
 Write-Host ""
 Write-Host "Tayyor! Endi:"
-Write-Host " - DaVinci Resolve: Preferences > System > General > External scripting using = Local"
+Write-Host " - DaVinci Resolve ni qayta oching va Workspace > Scripts > DaVinci_MCP_Bridge ni bosing"
+Write-Host "   (Studio da buning o'rniga: Preferences > System > General > External scripting using = Local)"
 Write-Host " - Claude Desktop ni to'liq yopib qayta oching"
 Write-Host " - Claude Code uchun:  claude mcp add davinci-resolve -- `"$venvPy`" -m davinci_resolve_mcp"
