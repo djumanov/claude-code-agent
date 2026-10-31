@@ -74,3 +74,8 @@ def test_bridge_not_running(monkeypatch):
     with pytest.raises(connection.ResolveError, match="DaVinci_MCP_Bridge"):
         connection.get_resolve()
     connection.reset_connection()
+
+
+def test_execute_script_via_bridge(bridged):
+    out = server.execute_resolve_script("result = [project.GetName(), timeline.GetName()]")
+    assert out["ok"] and out["result"] == ["Demo", "Main"]

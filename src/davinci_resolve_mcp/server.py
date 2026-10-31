@@ -896,13 +896,16 @@ def execute_resolve_script(code: str) -> dict[str, Any]:
     resolve = get_resolve()
     pm = resolve.GetProjectManager()
     project = pm.GetCurrentProject()
+    fusion = None
+    with contextlib.suppress(Exception):
+        fusion = resolve.Fusion()
     ns: dict[str, Any] = {
         "resolve": resolve,
         "project_manager": pm,
         "project": project,
         "media_pool": project.GetMediaPool() if project else None,
         "timeline": project.GetCurrentTimeline() if project else None,
-        "fusion": resolve.Fusion() if hasattr(resolve, "Fusion") else None,
+        "fusion": fusion,
         "result": None,
     }
     buf = io.StringIO()
