@@ -56,6 +56,8 @@ cd claude-code-agent
 
 ### Windows
 
+Eng oson yo'l: repo papkasidagi **`ORNATISH_Windows.bat`** faylini ikki marta bosing. Yoki terminalda:
+
 ```bash
 powershell -ExecutionPolicy Bypass -File scripts\install_windows.ps1
 ```
