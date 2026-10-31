@@ -1,0 +1,23 @@
+{
+  "name": "vedit",
+  "version": "1.0.0",
+  "description": "Video editing pipeline: Tella recordings + Epidemic Sound music, composed with HyperFrames, finished with FFmpeg.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "vedit": "bin/vedit.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "vedit": "node bin/vedit.mjs",
+    "doctor": "node bin/vedit.mjs doctor"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.8.223"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0"
+  }
+}
