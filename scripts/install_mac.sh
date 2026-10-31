@@ -6,7 +6,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 echo "1/3 Virtual muhit yaratilmoqda (.venv)..."
-python3 -m venv .venv
+PY=/Library/Frameworks/Python.framework/Versions/Current/bin/python3
+[ -x "$PY" ] || PY=python3
+"$PY" -m venv .venv
 VENV_PY="$ROOT/.venv/bin/python"
 
 echo "2/3 Paketlar o'rnatilmoqda..."

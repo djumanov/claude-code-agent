@@ -64,6 +64,8 @@ powershell -ExecutionPolicy Bypass -File scripts\install_windows.ps1
 
 ### macOS
 
+Eng oson yo'l: **`ORNATISH_macOS.command`** faylini ikki marta bosing (birinchi marta macOS ruxsat so'rasa: o'ng tugma → **Open**). Python ni [python.org](https://www.python.org/downloads/macos/) dan o'rnating — Resolve aynan shu Python ni ishlatadi. Yoki terminalda:
+
 ```bash
 bash scripts/install_mac.sh
 ```
