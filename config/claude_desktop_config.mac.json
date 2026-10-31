@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "davinci-resolve": {
+      "command": "/Users/SIZNING_ISMINGIZ/claude-code-agent/.venv/bin/python",
+      "args": ["-m", "davinci_resolve_mcp"]
+    }
+  }
+}
